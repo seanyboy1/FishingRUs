@@ -55,3 +55,14 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 def about(request):
     return render(request, 'fishing/about.html')
 # Create your views here.
+def supply(request):
+    return render(request, 'fishing/supply.html')
+
+def spot(request):
+    return render(request, 'fishing/spot.html')
+
+def camping(request):
+    return render(request, 'fishing/camping.html')
+
+def calendar(request):
+    return render(request, 'fishing/calendar.html')
