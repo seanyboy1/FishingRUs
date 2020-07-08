@@ -1,4 +1,46 @@
 {% extends "fishing/base.html" %}
 {% block content %}
-    <h1>fishing spots</h1>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{google_api_key}}&callback=initMap&libraries=&v=weekly"defer></script>
+    <script>
+        var map;
+        function initMap() {
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: { lat: 45.5419699, lng: -122.64861 },
+                zoom: 7
+            });
+
+            axios({
+                url: "{% url 'fishing-spot' %}",
+                method: 'get'
+            }).then(response => {
+                                                
+                let marker = new google.maps.Marker({
+                    
+                    animation: google.maps.Animation.DROP,
+                    
+                    map: map,
+                    icon: {
+                        
+                        scaledSize: new google.maps.Size(40, 40),
+                    }
+                });                
+            })
+        }
+    </script>
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+        #map {
+            height: 100%;            
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+</body>
+    
 {% endblock content %}

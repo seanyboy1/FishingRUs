@@ -1,9 +1,13 @@
 {% extends "fishing/base.html" %}
 {% block content %}
     {% for post in posts %}
-    
-      
-        <article class="media content-section">
+        <style>
+            article {
+                background-image: none;
+                
+            }
+        </style>      
+        <article class="article media content-section">
             <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
             <div class="media-body">
                 <div class="article-metadata">

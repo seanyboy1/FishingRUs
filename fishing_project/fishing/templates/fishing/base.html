@@ -18,13 +18,7 @@
           background-size: cover;
         }
         
-        contain {
-          background-image: url('/static/fishing/rod.jpg');
-          background-repeat: no-repeat;
-          background-attachment: fixed;
-          background-position: center;
-          background-size: cover;
-        }
+        
       </style>
     {% if title %}
         <title>Fishing R Us - {{ title }}</title>
@@ -78,7 +72,7 @@
                 <div class="content-section">
                     <img class='img-fluid w-100' src="/static/fishing/supply.jpg"/>
                     <h3>Plan a Trip </h3>
-                    <p class='text-muted'>Be a Wonderer</p>
+                    <p class='text-muted'>Be a Wanderer</p>
                     <ul class="list-group">
                         <a class="nav-item nav-link" href="{% url 'fishing-spot' %}">Fishing Spots</a>
                         <a class="nav-item nav-link" href="{% url 'fishing-camping' %}">Camping Spots</a>
