@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Post
+from . import secrets
 
 
 def home(request):
@@ -59,7 +60,11 @@ def supply(request):
     return render(request, 'fishing/supply.html')
 
 def spot(request):
-    return render(request, 'fishing/spot.html')
+
+    context = {
+        'google_api_key': secrets.google_api_key
+    }
+    return render(request, 'fishing/spot.html', context)
 
 def camping(request):
     return render(request, 'fishing/camping.html')
