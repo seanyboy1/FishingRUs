@@ -1,6 +1,9 @@
 {% extends "fishing/base.html" %}
+{% load static%}
 {% block content %}
-
+<head>
+    <script src="{% static 'fishing/js/secrets.js'%}"></script>
+</head>
 <body>
     <p>Google Calendar API Quickstart</p>
 
@@ -11,9 +14,9 @@
     <pre id="content" style="white-space: pre-wrap;"></pre>
 
     <script type="text/javascript">
+        console.log(API_KEY)
         // Client ID and API key from the Developer Console
-        var CLIENT_ID = 'CLIENT_ID';
-        var API_KEY = 'API_KEY';
+       
 
         // Array of API discovery doc URLs for APIs used by the quickstart
         var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
@@ -38,8 +41,8 @@
          */
         function initClient() {
             gapi.client.init({
-                apiKey: AIzaSyCRnryc5eEP80lzVz5ERzFFqrnXof-NofA,
-                clientId: 1027745440236,
+                apiKey: API_KEY,
+                clientId: CLIENT_ID,
                 discoveryDocs: DISCOVERY_DOCS,
                 scope: SCOPES
             }).then(function () {

@@ -1,8 +1,11 @@
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.http import JsonResponse
 from .models import Post
 from . import secrets
+from users import models
+import requests
 
 
 def home(request):
@@ -60,11 +63,27 @@ def supply(request):
     return render(request, 'fishing/supply.html')
 
 def spot(request):
-
+    place = Post.objects.all()
     context = {
+        'place': place,
         'google_api_key': secrets.google_api_key
     }
     return render(request, 'fishing/spot.html', context)
+
+def locations(request):
+    locations = []
+    for post in Post.objects.place():
+        location = {
+            'label': post.place,
+            'lat': post.place.latitude,
+            'lng': post.place.longitude,
+        }
+        if post.image:
+            location['image'] = post.image.url
+        else:
+            location['image'] = None
+        locations.append(location)
+    return JsonResponse({'locations': locations})
 
 def camping(request):
     return render(request, 'fishing/camping.html')
