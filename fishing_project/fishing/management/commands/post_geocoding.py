@@ -13,6 +13,8 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
 
         for post in Post.objects.all():
+            print('hello!!!!!!!!!!!!!!!')
+            print(post)
             if post.latitude != 0 or post.longitude != 0:
                 continue
             url = 'https://maps.googleapis.com/maps/api/geocode/json'
@@ -23,7 +25,7 @@ class Command(BaseCommand):
             data = response.json()
             location = data['results'][0]['geometry']['location']
             print(location)
-
+            print(post)
             post.latitude = location['lat']
             post.longitude = location['lng']
             post.save()

@@ -25,10 +25,22 @@ class PostDetailView(DetailView):
     model = Post
 
 class PostCreateView(LoginRequiredMixin, CreateView):
+
     model = Post
     fields = ['title', 'location', 'fish', 'size', 'lure']
     
     def form_valid(self, form):
+        
+        url = 'https://maps.googleapis.com/maps/api/geocode/json'
+        response = requests.get(url, params={
+            'address': form.instance.location,
+            'key': secrets.google_api_key
+        })
+        data = response.json()
+       
+        location = data['results'][0]['geometry']['location']
+        form.instance.latitude = location['lat']
+        form.instance.longitude = location['lng']
         form.instance.author = self.request.user
         return super().form_valid(form)
 
