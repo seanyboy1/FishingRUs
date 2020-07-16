@@ -26,7 +26,7 @@ class PostDetailView(DetailView):
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    fields = ['title', 'place', 'fish', 'size', 'lure']
+    fields = ['title', 'location', 'fish', 'size', 'lure']
     
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -34,7 +34,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
-    fields = ['title', 'place', 'fish', 'size', 'lure']
+    fields = ['title', 'location', 'fish', 'size', 'lure']
     
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -63,27 +63,27 @@ def supply(request):
     return render(request, 'fishing/supply.html')
 
 def spot(request):
-    place = Post.objects.all()
+    posts = Post.objects.all()
     context = {
-        'place': place,
+        'posts': posts,
         'google_api_key': secrets.google_api_key
     }
     return render(request, 'fishing/spot.html', context)
 
-def locations(request):
-    locations = []
-    for post in Post.objects.place():
-        location = {
-            'label': post.place,
-            'lat': post.place.latitude,
-            'lng': post.place.longitude,
-        }
-        if post.image:
-            location['image'] = post.image.url
-        else:
-            location['image'] = None
-        locations.append(location)
-    return JsonResponse({'locations': locations})
+# def locations(request):
+#     locations = []
+#     for post in Post.objects.place():
+#         location = {
+#             'label': post.place,
+#             'lat': post.place.latitude,
+#             'lng': post.place.longitude,
+#         }
+#         if post.image:
+#             location['image'] = post.image.url
+#         else:
+#             location['image'] = None
+#         locations.append(location)
+#     return JsonResponse({'locations': locations})
 
 def camping(request):
     return render(request, 'fishing/camping.html')
