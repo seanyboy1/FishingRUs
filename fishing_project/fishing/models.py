@@ -11,8 +11,8 @@ class Post(models.Model):
     lure = models.CharField(max_length=100)
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    latitude = models.FloatField(default=True)
-    longitude = models.FloatField(default=True)
+    latitude = models.FloatField()
+    longitude = models.FloatField()
 
 
     def __str__(self):

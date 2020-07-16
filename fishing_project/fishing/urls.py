@@ -3,6 +3,7 @@ from .views import PostListView, PostDetailView, PostCreateView, PostUpdateView,
 from . import views
 
 
+
 urlpatterns = [
     path('', PostListView.as_view(), name='fishing-home'),
     path('post/<int:pk>/', PostDetailView.as_view(), name='post-detail'),
@@ -12,6 +13,7 @@ urlpatterns = [
     path('about/', views.about, name='fishing-about'),
     path('supply/', views.supply, name='fishing-supply'),
     path('spot/', views.spot, name='fishing-spot'),
+    path('locations/', views.locations, name='fishing-locations'),
     path('camping/', views.camping, name='fishing-camping'),
     path('calendar/', views.calendar, name='fishing-calendar'),
 ]

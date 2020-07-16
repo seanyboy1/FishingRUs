@@ -70,20 +70,18 @@ def spot(request):
     }
     return render(request, 'fishing/spot.html', context)
 
-# def locations(request):
-#     locations = []
-#     for post in Post.objects.place():
-#         location = {
-#             'label': post.place,
-#             'lat': post.place.latitude,
-#             'lng': post.place.longitude,
-#         }
-#         if post.image:
-#             location['image'] = post.image.url
-#         else:
-#             location['image'] = None
-#         locations.append(location)
-#     return JsonResponse({'locations': locations})
+
+def locations(request):
+    locations = []
+    for post in Post.objects.all():
+        location = {
+            'label': post.location,
+            'lat': post.latitude,
+            'lng': post.longitude,
+        }
+        
+        locations.append(location)
+    return JsonResponse({'locations': locations})
 
 def camping(request):
     return render(request, 'fishing/camping.html')
