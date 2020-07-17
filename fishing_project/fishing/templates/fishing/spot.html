@@ -30,7 +30,11 @@
                 console.log(locations)
                 for (let i = 0; i < locations.length; ++i) {
                     console.log(locations[i])
-                    let marker = new google.maps.Marker({ position: { lat: locations[i].lat, lng: locations[i].lng }, map: map });
+                    let marker = new google.maps.Marker({
+                        position: {lat: locations[i].lat, lng: locations[i].lng},
+                        title: locations[i].label,
+                        map: map,
+                     });
                 }
             })
 

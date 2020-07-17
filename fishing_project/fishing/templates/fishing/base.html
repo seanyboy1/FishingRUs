@@ -68,6 +68,7 @@
                 {% endif %}
                 {% block content %}{% endblock %}
             </div>
+            {% if user.is_authenticated %}
             <div class="col-md-4">
                 <div class="content-section">
                     <img class='img-fluid w-100' src="/static/fishing/rod.jpg"/>
@@ -81,7 +82,9 @@
                     </ul>
                     
                 </div>
+
             </div>
+            {% endif %}
         </div>
     </main>
 
