@@ -1,5 +1,11 @@
 {% extends "fishing/base.html" %}
 {% block content %}
+<style>
+    h2 {
+        color: whitesmoke
+    }
+</style>
+{% if user.is_authenticated %}
     {% for post in posts %}
        
         <article class="article media content-section">
@@ -36,4 +42,7 @@
 
 
     {% endif %}
+{% else %}
+        <h2>Please Log In or Register</h2>
+{% endif %}
 {% endblock content %}
